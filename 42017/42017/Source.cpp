@@ -72,7 +72,7 @@ int main() {
 	//set game screen position, background, title, and icon
 	al_set_window_position(display, 0, 0);
 	al_set_window_title(display, "earth mars orbit sim");
-	background = al_load_bitmap("space2.jpg");
+	background = al_load_bitmap("space.jpg");
 	icon = al_load_bitmap("mars.jpg");
 	al_set_display_icon(display, icon);
 
@@ -101,8 +101,10 @@ int main() {
 
 
 			//parametric equations for Earth's elliptical orbit
+
 			earth_x = Earth_Semimajor_Axis*(cos((t*3.14*Period_Ratio_Earth) / 180 - Earth_Eccentricity)) + SCREEN_WIDTH / 2;
-			earth_y = Earth_Semimajor_Axis*(sqrt((1 - Earth_Eccentricity)*(1 - Earth_Eccentricity))*sin((t*3.14) / 180)) + SCREEN_HEIGHT / 2;
+
+			earth_y = Earth_Semimajor_Axis*(sqrt((1 - Earth_Eccentricity)*(1 - Earth_Eccentricity))*sin((t*3.14*Period_Ratio_Earth) / 180)) + SCREEN_HEIGHT / 2;
 
 			//parametric equations for Mars orbit go here
 
@@ -123,11 +125,7 @@ int main() {
 			}
 
 
-			//distance calulation 
-			//xdiff = (Earth_Semimajor_Axis*(cos((t*3.14*Period_Ratio_Earth) / 180 - Earth_Eccentricity)) + SCREEN_WIDTH / 2) - (Mars_Semimajor_Axis*(cos((t*3.14*.5317) / 180 - Mars_Eccentricity)) + SCREEN_WIDTH / 2);
-			//ydiff = (Earth_Semimajor_Axis*(sqrt((1 - Earth_Eccentricity)*(1 - Earth_Eccentricity))*sin((t*3.14) / 180)) + SCREEN_HEIGHT / 2) - (Mars_Semimajor_Axis*(sqrt((1 - Mars_Eccentricity)*(1 - Mars_Eccentricity))*sin((t*3.14*Period_Ratio_Mars) / 180)) + SCREEN_HEIGHT / 2);
-			//dist = sqrt(ydiff*ydiff + xdiff*xdiff);
-			//cout << "distance between planets: " << dist << endl;
+		
 
 			redraw = true;
 		}
